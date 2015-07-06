@@ -1,14 +1,17 @@
 CC=gcc
 CFLAGS=-c -Wall
 
-all: example.o resin.o
-	$(CC) build/resin.o build/example.o -o build/resin
+all: main.o resin.o hashtable.o
+	$(CC) build/resin.o build/main.o -o build/resin
 
 resin.o:
 	$(CC) $(CFLAGS) resin.c -o build/resin.o
 
-example.o:
-	$(CC) $(CFLAGS) example.c -o build/example.o
+hashtable.o:
+	$(CC) $(CFLAGS) hashtable.c -o build/hashtable.o
+
+main.o:
+	$(CC) $(CFLAGS) main.c -o build/main.o
 
 clean:
 	rm build/*.o build/resin

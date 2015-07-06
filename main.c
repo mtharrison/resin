@@ -9,12 +9,17 @@ int main(int argc, char const *argv[])
 
     // Make a database
 
-    ResinDB *db = ResinOpen("MyDB");
+    ResinDB *db = ResinOpen("MyDB", "/data/resin/");
+
+    if (db == NULL) {
+        return 1;
+    }
+
     assert(strcmp(db->name, "MyDB") == 0);
     assert(db->fp != NULL);
 
-    int ret = ResinSet("Hello", "World");
-    const char *val = ResinGet("Hello");
+    int ret = ResinSet(db, "Hello", "World");
+    const char *val = ResinGet(db, "Hello");
     printf("%d\n", ret);
     printf("%s\n", val);
 
