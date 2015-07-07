@@ -24,5 +24,5 @@ typedef struct ResinDB ResinDB;
 ResinDB *ResinOpen(const char *name, const char *path);
 void ResinClose(ResinDB *db);
 void ResinSave(ResinDB *db);
-int ResinSet(ResinDB *db, const char *key, const char *value);
-const char *ResinGet(ResinDB *db, const char *key);
+void ResinSet(ResinDB *db, char *key, char *value);
+char *ResinGet(ResinDB *db, char *key);

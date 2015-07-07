@@ -46,13 +46,13 @@ void ResinSave(ResinDB *db)
     fwrite(db, sizeof(ResinDB), 1, db->fp);
 }
 
-int ResinSet(ResinDB *db, const char *key, const char *value) 
+void ResinSet(ResinDB *db, char *key, char *value) 
 {
+    HashtableSet(db->hashtable, key, value);
     ResinSave(db);
-    return 1;
 }
 
-const char *ResinGet(ResinDB *db, const char *key) 
+char *ResinGet(ResinDB *db, char *key) 
 {
-    return "Howdy";
+    return HashtableGet(db->hashtable, key);
 }

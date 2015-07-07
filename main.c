@@ -18,10 +18,10 @@ int main(int argc, char const *argv[])
     assert(strcmp(db->name, "mydb") == 0);
     assert(db->fp != NULL);
 
-    int ret = ResinSet(db, "Hello", "World");
+    ResinSet(db, "Hello", "World");
     const char *val = ResinGet(db, "Hello");
-    printf("%d\n", ret);
-    printf("%s\n", val);
+
+    assert(strcmp(val, "World") == 0);
 
     ResinClose(db);
 
