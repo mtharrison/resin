@@ -9,13 +9,13 @@ int main(int argc, char const *argv[])
 
     // Make a database
 
-    ResinDB *db = ResinOpen("MyDB", "/data/resin/");
+    ResinDB *db = ResinOpen("mydb", NULL);
 
     if (db == NULL) {
         return 1;
     }
 
-    assert(strcmp(db->name, "MyDB") == 0);
+    assert(strcmp(db->name, "mydb") == 0);
     assert(db->fp != NULL);
 
     int ret = ResinSet(db, "Hello", "World");

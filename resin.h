@@ -3,13 +3,17 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "hashtable.h"
+
 #define MAX_DBFILE_PATH_LENGTH 1024
+#define DBFILE_PATH_DEFAULT "/data/resin/"
 
 // types
 
 struct ResinDB {
     int size;
     const char *name;
+    Hashtable *hashtable;
     FILE *fp;
 };
 

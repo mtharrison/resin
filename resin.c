@@ -2,6 +2,11 @@
 
 ResinDB *ResinOpen(const char *name, const char *path) 
 {
+
+    if (path == NULL) {
+        path = DBFILE_PATH_DEFAULT;
+    }
+
     if (strlen(name) + strlen(path) > MAX_DBFILE_PATH_LENGTH) {
         printf("DB file path too long, maximum is %d\n", MAX_DBFILE_PATH_LENGTH);
         return NULL;
@@ -13,6 +18,7 @@ ResinDB *ResinOpen(const char *name, const char *path)
 
     ResinDB *db = malloc(sizeof(ResinDB));
     db->name = name;
+    db->hashtable = HashtableNew();
     db->size = 0;
     FILE *fp = fopen(dbPath, "a");
 
@@ -31,6 +37,7 @@ ResinDB *ResinOpen(const char *name, const char *path)
 void ResinClose(ResinDB *db) 
 {
     fclose(db->fp);
+    free(db->hashtable);
     free(db);
 }
 
